@@ -1,0 +1,329 @@
+.home {
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px 16px 34px;
+    background: #efefef;
+    color: #222;
+    overflow-y: auto;
+}
+
+.shell {
+    width: min(100%, 366px);
+    min-height: calc(100dvh - 54px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin: 0 auto;
+}
+
+.logoWrap {
+    width: 100%;
+    text-align: center;
+    margin-top: 4px;
+}
+
+.logoLine {
+    width: 65%;
+    height: 2px;
+    margin: 0 auto 10px;
+    background: linear-gradient(90deg, #2b61d3 0%, #d46df6 100%);
+    border-radius: 999px;
+}
+
+.logoTitle {
+    margin: 0;
+    font-size: clamp(1.7rem, 6vw, 2.38rem);
+    line-height: 1.08;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    background: linear-gradient(90deg, #215bca 0%, #cc71eb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.logoSub {
+    margin-top: 3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: clamp(0.85rem, 3.2vw, 1.23rem);
+    background: linear-gradient(90deg, #4e5abf 0%, #d46df6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+}
+
+.logoSub::before {
+    content: "";
+    display: inline-block;
+    width: 78px;
+    height: 2px;
+    background: linear-gradient(90deg, #2b61d3 0%, #4e5abf 100%);
+    border-radius: 999px;
+}
+
+.descBox {
+    width: 100%;
+    border-radius: 24px;
+    border: 2px solid transparent;
+    background:
+            linear-gradient(#efefef, #efefef) padding-box,
+            linear-gradient(90deg, #2b61d3 0%, #d46df6 100%) border-box;
+    padding: 17px 15px 20px;
+    margin-top: 8px;
+    text-align: center;
+    font-family: 'OngleipParkDahyeon', sans-serif !important;
+}
+
+.descHead {
+    margin: -6px 0 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: linear-gradient(90deg, #2b61d3 0%, #d46df6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'OngleipParkDahyeon', sans-serif !important;
+}
+
+.descText {
+    margin: 0 0 -4px;
+    font-size: clamp(0.95rem, 3.9vw, 1.32rem);
+    line-height: 1.12;
+    background: linear-gradient(90deg, #2b61d3 0%, #d46df6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    word-break: keep-all;
+    font-family: 'OngleipParkDahyeon', sans-serif !important;
+}
+
+.toggleWrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 3px;
+    position: relative;
+    z-index: 20;
+}
+
+.toggleButton {
+    width: 100%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    outline: none;
+}
+
+.toggleBar {
+    width: 100%;
+    height: 17px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #7d93b7 0%, #cf6cef 100%);
+    transition: transform 0.4s ease;
+}
+
+.toggleButton:active .toggleBar {
+    transform: scaleX(0.98);
+}
+
+.toggleArrow {
+    font-size: 2rem;
+    line-height: 1;
+    color: #9cb4ff;
+    margin-top: 2px;
+    user-select: none;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(-3px);
+}
+
+.rotated {
+    transform: translateY(0px) rotate(180deg);
+    color: #cf6cef;
+}
+
+.optionsPanel {
+    width: 100%;
+    border-radius: 26px;
+    border: 3px solid transparent;
+    background:
+            linear-gradient(#efefef, #efefef) padding-box,
+            linear-gradient(90deg, #7d93b7 0%, #cf6cef 100%) border-box;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    padding: 0 14px;
+    pointer-events: none;
+    transition: max-height 0.35s ease-out, opacity 0.35s ease-out, padding 0.35s ease-out;
+}
+
+.optionsPanelOpen {
+    max-height: 700px;
+    opacity: 1;
+    padding: 15px 14px 17px;
+    pointer-events: auto;
+}
+
+.optionsGrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 7px;
+    width: 100%;
+    overflow: visible;
+}
+
+.optionButton {
+    width: auto;
+    min-height: 34px;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+}
+
+.optionInner {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+    transition: all 0.15s ease;
+}
+
+.labelText {
+    font-size: 0.82rem;
+    white-space: nowrap;
+    word-break: keep-all;
+}
+
+.optionButtonSelected .optionInner {
+    background: rgba(139, 109, 235, 0.15);
+    border-color: #6f7fe2;
+}
+
+.checkboxBox {
+    width: 15px;
+    height: 15px;
+    border: 2px solid #222;
+    background: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.optionButtonSelected .checkboxBox {
+    border-color: #b77bdf;
+    color: #fa31d8;
+}
+
+.optionLabel {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    line-height: 1.2;
+    color: #222;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.labelText {
+    font-size: clamp(0.94rem, 2.1vw, 0.76rem);
+}
+
+.selectedInfo {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 0.84rem;
+    color: #5b5b5b;
+}
+
+.createArea {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 18px;
+}
+
+.createButton {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 7px 8px;
+    font-size: clamp(1.5rem, 5.4vw, 2rem);
+    font-weight: 800;
+    line-height: 1.02;
+    text-align: center;
+    color: #ff4fd9;
+    text-shadow:
+            -2px 0 #0f8dff,
+            0 0 0 transparent;
+}
+
+.footer {
+    width: 100%;
+    margin-top: auto;
+    padding-top: 24px;
+    text-align: left;
+    font-size: 0.82rem;
+    line-height: 1.35;
+    color: #757070;
+    font-family: 'OngleipParkDahyeon', sans-serif !important;
+}
+
+.footer strong {
+    display: block;
+    font-weight: 500;
+    font-family: 'OngleipParkDahyeon', sans-serif !important;
+}
+
+@media (max-width: 420px) {
+    .home {
+        padding: 18px 12px 30px;
+    }
+
+    .shell {
+        min-height: calc(100dvh - 48px);
+    }
+
+    .logoSub::before {
+        width: 48px;
+    }
+
+    .descBox {
+        padding: 16px 12px 19px;
+    }
+
+    .optionsGrid {
+        gap: 5px 3px;
+    }
+
+    .labelText {
+        font-size: clamp(0.62rem, 1.9vw, 0.74rem);
+    }
+}
+
+@media (max-width: 360px) {
+    .shell {
+        min-height: calc(100dvh - 48px);
+    }
+
+    .optionsGrid {
+        gap: 5px 2px;
+    }
+
+    .labelText {
+        font-size: clamp(0.58rem, 1.6vw, 0.7rem);
+    }
+}

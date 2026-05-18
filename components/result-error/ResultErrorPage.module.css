@@ -1,0 +1,182 @@
+.errorPage {
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    padding: 16px;
+    background: #efefef;
+    color: #222;
+    overflow-y: auto;
+}
+
+.errorShell {
+    width: min(100%, 366px);
+    min-height: calc(100dvh - 32px);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.logoWrap {
+    width: 100%;
+    text-align: center;
+    margin-top: 4px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logoLine {
+    width: 65%;
+    height: 2px;
+    margin: 0 auto 10px;
+    background: linear-gradient(90deg, #2b61d3 0%, #d46df6 100%);
+    border-radius: 999px;
+}
+
+.logoTitle {
+    margin: 0;
+    font-size: clamp(1.7rem, 6vw, 2.38rem);
+    line-height: 1.08;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    background: linear-gradient(90deg, #215bca 0%, #cc71eb 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.logoSub {
+    margin-top: 3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: clamp(0.85rem, 3.2vw, 1.23rem);
+    font-weight: 600;
+    background: linear-gradient(90deg, #4e5abf 0%, #d46df6 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.logoSub::before {
+    content: "";
+    display: inline-block;
+    width: 90px;
+    height: 2px;
+    background: linear-gradient(90deg, #2b61d3 0%, #4e5abf 100%);
+    border-radius: 999px;
+}
+
+.errorContent {
+    width: 100%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    /*
+        화면 높이에 따라 중앙 영역 여백이 자연스럽게 변한다.
+        고정 px만 쓰지 않아서 모니터마다 비율이 덜 깨진다.
+    */
+    padding-top: clamp(28px, 5.5dvh, 64px);
+    padding-bottom: clamp(28px, 4dvh, 56px);
+}
+
+.alienWrap {
+    width: clamp(150px, 20dvh, 230px);
+    height: clamp(120px, 17dvh, 190px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: alienFloat 2.8s ease-in-out infinite;
+}
+
+.alienImage {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 9px 15px rgba(0, 0, 0, 0.16));
+}
+
+.errorMessage {
+    margin: clamp(4px, 1dvh, 12px) 0 0;
+    text-align: center;
+    font-size: clamp(1.28rem, 4.2vw, 1.75rem);
+    line-height: 1.25;
+    font-weight: 600;
+    color: #1f1f1f;
+    letter-spacing: -0.03em;
+    font-family: 'OngleipParkDahyeon', sans-serif !important;
+}
+
+.homeLink {
+    margin-top: clamp(82px, 12dvh, 132px);
+    display: inline-block;
+    text-align: center;
+    font-size: clamp(1.28rem, 4.5vw, 1.75rem);
+    line-height: 1.32;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    text-decoration: none;
+    color: #2858e8;
+    text-shadow:
+            2px 0 #ff00f5,
+            -2px 0 #00d5ff,
+            0 1px rgba(0, 0, 0, 0.08);
+}
+
+.footer {
+    width: 100%;
+    padding-top: 24px;
+    text-align: left;
+    font-size: 0.82rem;
+    line-height: 1.35;
+    color: #888888;
+    font-family: 'OngleipParkDahyeon', sans-serif !important;
+}
+
+.footer strong {
+    display: block;
+    font-weight: 500;
+    font-family: 'OngleipParkDahyeon', sans-serif !important;
+}
+
+@keyframes alienFloat {
+    0% {
+        transform: translateY(0px) rotate(-4deg);
+    }
+
+    50% {
+        transform: translateY(-8px) rotate(4deg);
+    }
+
+    100% {
+        transform: translateY(0px) rotate(-4deg);
+    }
+}
+
+@media (max-width: 420px) {
+    .errorPage {
+        padding: 12px;
+    }
+
+    .errorShell {
+        min-height: calc(100dvh - 24px);
+    }
+
+    .logoSub::before {
+        width: 48px;
+    }
+
+    .footer {
+        padding-top: 18px;
+    }
+}
+
+@media (max-width: 360px) {
+    .footer {
+        padding-top: 16px;
+    }
+}
