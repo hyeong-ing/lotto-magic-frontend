@@ -1,6 +1,20 @@
 import type { Metadata, Viewport } from 'next';
+import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
+
 import MswProvider from '@/components/providers/MswProvider';
+import QueryProvider from '@/components/providers/QueryProvider';
+import { MagicToaster } from '@/components/common/MagicToast';
+
+const geistSans = Geist({
+    variable: '--font-geist-sans',
+    subsets: ['latin'],
+});
+
+const geistMono = Geist_Mono({
+    variable: '--font-geist-mono',
+    subsets: ['latin'],
+});
 
 const siteName = '로또 번호 생성 마법진';
 
@@ -26,10 +40,10 @@ export const metadata: Metadata = {
         '로또',
         '로또 번호',
         '로또 번호 생성',
-        '로또 추천',
+        '로또 번호 추천',
         '행운',
         '마법진',
-        '오늘의 운세',
+        '오늘의 행운',
     ],
 
     authors: [
@@ -41,10 +55,12 @@ export const metadata: Metadata = {
     creator: 'OddCoding',
 
     openGraph: {
-        title: siteName,
-        description: siteDescription,
+        type: 'website',
+        locale: 'ko_KR',
         url: '/',
         siteName,
+        title: siteName,
+        description: siteDescription,
         images: [
             {
                 url: '/og-image.png',
@@ -53,8 +69,6 @@ export const metadata: Metadata = {
                 alt: '로또 번호 생성 마법진 미리보기 이미지',
             },
         ],
-        locale: 'ko_KR',
-        type: 'website',
     },
 
     twitter: {
@@ -85,8 +99,13 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="ko">
-        <body>
-        <MswProvider>{children}</MswProvider>
+        <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <MswProvider>
+            <QueryProvider>
+                {children}
+                <MagicToaster />
+            </QueryProvider>
+        </MswProvider>
         </body>
         </html>
     );
