@@ -817,9 +817,6 @@
         width: 78px;
     }
 
-    .logoSub::before {
-        width: 48px;
-    }
 
     .luckInfo {
         margin-top: 24px;
@@ -828,7 +825,7 @@
 
     .magicStage {
         height: 360px;
-        margin-top: 30px;
+        margin-top: 26px;
     }
 
     .magicStage::before {
@@ -871,7 +868,7 @@
     .ballPosition4,
     .ballPosition5,
     .ballPosition6 {
-        top: 170px;
+        top: 173px;
     }
 
     .buttonArea {
