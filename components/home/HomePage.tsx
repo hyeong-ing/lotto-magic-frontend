@@ -19,7 +19,7 @@ const optionMetaMap: Record<string, { label: string; emoji: string }> = {
     행운: { label: '행운', emoji: '🍀' },
     조상님의도움: { label: '조상님의 도움', emoji: '💀' },
     개쩌는꿈: { label: '개쩌는꿈', emoji: '☁️' },
-    나의직감: { label: '나의 직감', emoji: '🤏' },
+    나의직감: { label: '나의 직감', emoji: '🫵' },
     외계인의텔레파시: { label: '외계인의 텔레파시', emoji: '🛸' },
     내인생수직상승황금티켓: { label: '내인생수직상승황금티켓', emoji: '🎫' },
     내집마련: { label: '내집마련', emoji: '🏠' },
