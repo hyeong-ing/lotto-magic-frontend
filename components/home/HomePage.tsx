@@ -136,6 +136,8 @@ export default function HomePage() {
                         원하는 요소 3가지를 넣어주시면
                         <br />
                         쿵짝쿵짝~ 쨔잔! 하고 만들어드립니다.
+                        <br />
+                        무료 배포라 로딩이 느리니 이해부탁드려요.
                     </p>
                 </div>
 
