@@ -809,14 +809,13 @@
     }
 
     .logoLine {
-        width: 150px;
-        margin-bottom: 10px;
+        width: 154px;
+        margin-bottom: 13px;
     }
 
     .logoSub::before {
         width: 78px;
     }
-
 
     .logoSub::before {
         width: 48px;
@@ -829,7 +828,7 @@
 
     .magicStage {
         height: 360px;
-        margin-top: 34px;
+        margin-top: 30px;
     }
 
     .magicStage::before {
@@ -872,7 +871,7 @@
     .ballPosition4,
     .ballPosition5,
     .ballPosition6 {
-        top: 188px;
+        top: 170px;
     }
 
     .buttonArea {
@@ -881,6 +880,10 @@
 
     .footer {
         padding-top: 28px;
+    }
+
+    .visualSection {
+        margin-top: 94px;
     }
 }
 
