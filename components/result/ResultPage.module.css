@@ -809,14 +809,13 @@
     }
 
     .logoLine {
-        width: 154px;
+        width: 155px;
         margin-bottom: 13px;
     }
 
     .logoSub::before {
         width:48px;
     }
-
 
     .luckInfo {
         margin-top: 24px;
@@ -872,15 +871,15 @@
     }
 
     .buttonArea {
-        margin-top: 32px;
-    }
-
-    .footer {
-        padding-top: 28px;
+        margin-top: 36px;
     }
 
     .visualSection {
-        margin-top: 94px;
+        margin-top: 60px;
+    }
+
+    .spaceFrame {
+        transform: translateY(6px);
     }
 }
 
