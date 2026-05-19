@@ -185,7 +185,7 @@
     }
 
     .logoSub::before {
-        width: 78px;
+        width: 48px;
     }
 
     .visualSection {
@@ -197,7 +197,7 @@
     }
 
     .spinnerNearHead {
-        top: 32%;
+        top: 42%;
         left: 58%;
     }
 

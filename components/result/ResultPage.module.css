@@ -814,7 +814,7 @@
     }
 
     .logoSub::before {
-        width: 78px;
+        width:48px;
     }
 
 
@@ -872,7 +872,7 @@
     }
 
     .buttonArea {
-        margin-top: 18px;
+        margin-top: 32px;
     }
 
     .footer {
@@ -953,7 +953,7 @@
     }
 
     .buttonArea {
-        margin-top: 16px;
+        margin-top: 30px;
     }
 
     .resultButton {
