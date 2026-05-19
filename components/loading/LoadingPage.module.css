@@ -179,8 +179,13 @@
         max-height: calc(100dvh - 24px);
     }
 
+    .logoLine {
+        width: 78px;
+        margin-bottom: 10px;
+    }
+
     .logoSub::before {
-        width: 48px;
+        width: 78px;
     }
 
     .visualSection {

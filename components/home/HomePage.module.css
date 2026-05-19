@@ -297,8 +297,13 @@
         min-height: calc(100dvh - 48px);
     }
 
+    .logoLine {
+        width: 78px;
+        margin-bottom: 10px;
+    }
+
     .logoSub::before {
-        width: 48px;
+        width: 78px;
     }
 
     .descBox {

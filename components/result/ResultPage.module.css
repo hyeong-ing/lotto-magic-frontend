@@ -808,6 +808,16 @@
         min-height: calc(100dvh - 48px);
     }
 
+    .logoLine {
+        width: 78px;
+        margin-bottom: 10px;
+    }
+
+    .logoSub::before {
+        width: 78px;
+    }
+
+
     .logoSub::before {
         width: 48px;
     }
@@ -818,8 +828,8 @@
     }
 
     .magicStage {
-        height: 342px;
-        margin-top: 16px;
+        height: 360px;
+        margin-top: 34px;
     }
 
     .magicStage::before {
@@ -837,11 +847,7 @@
     .spellImageFrame {
         width: 100%;
         max-width: 336px;
-        bottom: -42px;
-    }
-
-    .spellImageFrame[data-tone='purple'] {
-        --spell-offset-y: -12px;
+        bottom: -66px;
     }
 
     .lottoBall {
@@ -855,7 +861,7 @@
     }
 
     .ballPosition1 {
-        top: 38px;
+        top: 42px;
     }
 
     .ballPosition2,
@@ -866,11 +872,11 @@
     .ballPosition4,
     .ballPosition5,
     .ballPosition6 {
-        top: 190px;
+        top: 188px;
     }
 
     .buttonArea {
-        margin-top: 20px;
+        margin-top: 18px;
     }
 
     .footer {
@@ -880,27 +886,31 @@
 
 @media (max-width: 360px) {
     .magicStage {
-        height: 320px;
+        height: 340px;
+        margin-top: 28px;
     }
 
     .magicStage::before {
         width: 285px;
         height: 225px;
-        bottom: 14px;
+        bottom: 0;
     }
 
     .magicStage::after {
         width: 220px;
         height: 52px;
-        bottom: -12px;
+        bottom: -20px;
     }
 
     .spellImageFrame {
         width: 98%;
         max-width: 308px;
-        bottom: -34px;
+        bottom: -52px;
     }
 
+    .spellImageFrame[data-tone='purple'] {
+        --spell-offset-y: 0px;
+    }
 
     .lottoBall {
         width: 58px;
@@ -912,8 +922,38 @@
         inset: -13px;
     }
 
+    .ballPosition1 {
+        top: 40px;
+        left: 50%;
+    }
+
+    .ballPosition2 {
+        top: 102px;
+        left: 39%;
+    }
+
+    .ballPosition3 {
+        top: 102px;
+        left: 61%;
+    }
+
+    .ballPosition4 {
+        top: 178px;
+        left: 26%;
+    }
+
+    .ballPosition5 {
+        top: 178px;
+        left: 50%;
+    }
+
+    .ballPosition6 {
+        top: 178px;
+        left: 74%;
+    }
+
     .buttonArea {
-        margin-top: 18px;
+        margin-top: 16px;
     }
 
     .resultButton {
