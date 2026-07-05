@@ -49,7 +49,7 @@ export const handlers = [
             luckMessage: '우주 통신 연결 완료',
             selectedOptions,
             spellNumber: 3,
-            spellImageUrl: '/images/spells/3.png',
+            spellImageUrl: '/3.png',
         });
     }),
 ];

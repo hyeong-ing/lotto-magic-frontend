@@ -1,20 +1,9 @@
 import type { Metadata, Viewport } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 
 import MswProvider from '@/components/providers/MswProvider';
 import QueryProvider from '@/components/providers/QueryProvider';
 import { MagicToaster } from '@/components/common/MagicToast';
-
-const geistSans = Geist({
-    variable: '--font-geist-sans',
-    subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-    variable: '--font-geist-mono',
-    subsets: ['latin'],
-});
 
 const siteName = '로또 번호 생성 마법진';
 
@@ -99,7 +88,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="ko">
-        <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <body>
         <MswProvider>
             <QueryProvider>
                 {children}

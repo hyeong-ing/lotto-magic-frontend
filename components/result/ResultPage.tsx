@@ -23,51 +23,40 @@ type SpellTone =
     | 'black';
 
 type SpellItem = {
-    src: string;
     tone: SpellTone;
 };
 
 const spellItemsByNumber: Record<number, SpellItem> = {
     1: {
-        src: '/1.png',
         tone: 'red',
     },
     2: {
-        src: '/2.png',
         tone: 'orange',
     },
     3: {
-        src: '/3.png',
         tone: 'orange',
     },
     4: {
-        src: '/4.png',
         tone: 'green',
     },
     5: {
-        src: '/5.png',
         tone: 'blue',
     },
     6: {
-        src: '/6.png',
         tone: 'blue',
     },
     7: {
-        src: '/7.png',
         tone: 'purple',
     },
     8: {
-        src: '/8.png',
         tone: 'pink',
     },
     9: {
-        src: '/9.png',
         tone: 'black',
     },
 };
 
 const defaultSpellItem: SpellItem = {
-    src: '/1.png',
     tone: 'red',
 };
 
@@ -126,26 +115,30 @@ export default function ResultPage() {
     }, [result]);
 
     useEffect(() => {
-        const savedResult = sessionStorage.getItem('lotto-result');
+        const timer = window.setTimeout(() => {
+            const savedResult = sessionStorage.getItem('lotto-result');
 
-        if (!savedResult) {
-            showMagicToast('저장된 결과가 없어요.');
-            router.replace('/');
-            return;
-        }
+            if (!savedResult) {
+                showMagicToast('저장된 결과가 없어요.');
+                router.replace('/');
+                return;
+            }
 
-        try {
-            const parsedJson = JSON.parse(savedResult);
-            const safeResult = LottoDrawResponseSchema.parse(parsedJson);
+            try {
+                const parsedJson = JSON.parse(savedResult);
+                const safeResult = LottoDrawResponseSchema.parse(parsedJson);
 
-            setResult(safeResult);
-        } catch (error) {
-            console.error(error);
+                setResult(safeResult);
+            } catch (error) {
+                console.error(error);
 
-            sessionStorage.removeItem('lotto-result');
-            showMagicToast('결과 정보를 읽지 못했어요.');
-            router.replace('/');
-        }
+                sessionStorage.removeItem('lotto-result');
+                showMagicToast('결과 정보를 읽지 못했어요.');
+                router.replace('/');
+            }
+        }, 0);
+
+        return () => window.clearTimeout(timer);
     }, [router]);
 
     const handleRetryClick = () => {
@@ -233,7 +226,7 @@ export default function ResultPage() {
                             }}
                         >
                             <Image
-                                src={spellItem.src}
+                                src={result.spellImageUrl}
                                 alt="랜덤 마법진"
                                 width={366}
                                 height={260}
