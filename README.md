@@ -61,11 +61,13 @@
 <br/>
 <br/>
 
+
 ### 🔶 프로젝트 목표
-+ Swagger와 OpenAPI를 활용해 요청과 응답 규격을 문서화하기.
-+ JUnit 5, Mockito, MockMvc를 활용해 프론트엔드에 의존하지 않고 백엔드 기능 검증하기.
-+ 입력값 검증과 전역 예외 처리를 적용해 일관된 오류 응답 형식 구현하기.
-+ Docker, 환경 변수와 Actuator를 적용해 배포 및 운영 환경을 고려한 서버 구성하기.
++ Next.js의 App Router의 파일 기반 라우팅과 프로젝트 구조 이해하기
++ MSW로 백엔드 API를 모킹하여 프론트엔드 기능을 독립적으로 개발하고 검증하기
++ React Query, Zod, Framer Motion 등 다양한 라이브러리의 역할과 사용 방법 익히기
++ 모바일 화면을 고려한 반응형 UI를 구현하며 화면 크기에 따른 요소 배치와 크기 조정 경험하기
+
 
 <br/>
 <br/>
@@ -130,119 +132,55 @@ const result = LottoDrawResponseSchema.parse(JSON.parse(savedResult));
 <br/>
 <br/>
 
+
 ### 🔶 문제 해결
 
-### [ 로또 번호 계산을 인덱스 기반으로 변경 ] <br/>
+### [ 모바일 화면 요소 배치 문제 ] <br/>
 
 1) 문제 발생 <br/>
 
-+ 처음에는 `1~45` 범위의 로또 번호를 직접 생성한 뒤, 선택 요소 점수만큼 이동시키도록 구현했습니다.
-+ 하지만 `45`를 초과한 번호를 순환시키기 위해 `-1`, `%45`, `+1` 처리를 반복해야했습니다.
++ 초기 레이아웃이 데스크톱 화면에 최적화되어 있어, 모바일 기기에서는 UI 요소가 서로 겹치거나 정렬이 어긋나는 현상이 있었습니다
++ 특히 절대 위치로 배치된 로또 공은 화면 너비가 줄어들어도 기존 좌표를 유지해 별도의 조정이 필요했습니다.
 
 <br/>
 
 2) 원인 파악 <br/>
 
-+ 작성된 계산식은 결국 번호를 잠시 `0~44` 범위로 바꿨다가 다시 로또 번호로 변환하는 구조였습니다.
-+ 사실상 인덱스 방식과 동일한 계산을 하고 있었습니다.
++ 마법진과 로또 공에 고정된 크기와 위치값이 사용되어 화면만 줄이면 요소 사이의 비율과 간격이 함께 유지되지 않았습니다.
++ 따라서 모든 요소를 일괄적으로 축소하기보다 화면 크기에 따라 크기와 위치를 각각 조정해야 했습니다.
 
 <br/>
 
 3) 문제 해결 <br/>
 
-+ 처음부터 `0~44` 범위의 인덱스를 생성하고 점수만큼 이동한 뒤, 마지막에 `1`을 더해 로또 번호로 변환했습니다.
-+ 계산용 인덱스와 실제 로또 번호를 분리하면서 코드가 간결해졌고 순환 이동 로직의 의도가 더 명확해졌습니다.
++ 콘텐츠 너비는 화면을 넘지 않도록 제한하고 높이는 모바일 브라우저 영역을 반영하는 `dvh` 단위를 사용했습니다.
++ `420px`과 `360px`을 기준으로 마법진, 로또 공과 버튼의 크기 및 위치를 단계적으로 조정했습니다.
+ 
+```css
+.resultShell {
+    width: min(100%, 366px);
+    min-height: calc(100dvh - 54px);
+}
 
-```java
-int randomIndex = random.nextInt(45);
-int movedIndex = (randomIndex + selectedOptionScore) % 45;
-int lottoNumber = movedIndex + 1;
-```
+@media (max-width: 420px) {
+    .lottoBall {
+        width: 64px;
+        height: 64px;
+    }
+}
 
-<br/>
-<br/>
-
-
-### [ @Valid 검증 예외 미처리 ] <br/>
-
-1) 문제 발생 <br/>
-
-+ 선택 요소를 2개만 전달했을 때 `400 Bad Request`가 반환되는지 확인하는 테스트를 작성했습니다.
-+ 그러나 예상과 달리 `500 Internal Service Error`가 반환되었습니다.
-
-<br/>
-
-2) 원인 파악 <br/>
-
-+ `LottoRequst`에 요소 개수를 3개로 제한하는 `@Size`가 적용되어 있었습니다.
-+ 컨트롤러의 `@Valid`가 서비스 호출 전에 요청값을 검증하면서 `MethodArgumentNotValidException`이 먼저 발생했습니다.
-+ 해당 예외를 처리하는 메서드가 없어, 모든 예외를 처리하는 `Exception` 핸들러가 이를 잡고 500 응답을 반환했습니다.
-+ 따라서 Mock으로 설정한 `lottoService.draw()`는 실제로 호출되지 않았습니다.
-
-```java
-@Size(min = 3, max = 3, message = "3개의 요소를 선택해주세요.")
-List<String> selectedOptions
-```
-<br/>
-
-3) 문제 해결 <br/>
-
-+ `MethodArgumentNotValidException` 전용 핸들러를 추가했습니다.
-+ DTO에 작성한 검증 메시지를 추출해 일관된 `400 Bad Request` 응답으로 반환하도록 수정했습니다.
-
-```java
-@ExceptionHandler(MethodArgumentNotValidException.class)
-public ResponseEntity<ErrorResponse> handleValidation(
-        MethodArgumentNotValidException exception,
-        HttpServletRequest request
-) {
-    String message = exception.getBindingResult()
-            .getFieldErrors()
-            .getFirst()
-            .getDefaultMessage();
-
-    return ResponseEntity.badRequest()
-            .body(createErrorResponse(message, request));
+@media (max-width: 360px) {
+    .lottoBall {
+        width: 58px;
+        height: 58px;
+    }
 }
 ```
 
 <br/>
 <br/>
 
-### [ CORS 문제 ] <br/>
 
-1) 문제 발생 <br/>
-
-+ 프론트엔드와 백엔드가 서로 다른 주소에서 실행되어 요청이 CORS 정책에 의해 차단되었습니다.
-
-<br/>
-
-2) 원인 파악 <br/>
-
-+ 백엔드에 프론트엔드 출처를 허용하는 CORS 설정이 필요했습니다.
-+ 여러 API에 같은 정책을 적용해야 해 컨트롤러별 `@CrossOrigin`보다 전역 설정이 적합해보였습니다.
-  
-<br/>
-
-3) 문제 해결 <br/>
-
-+ `WebMvcConfigurer`로 `/api/**` 요청에 CORS 정책을 공통 적용했습니다.
-+ 로컬과 배포 환경에서 허용할 주소가 다르므로, 주소는 설정값으로 주입받도록 구성했습니다.
-
-```java
-@Value("${app.cors.allowed-origin:http://localhost:3000}")
-private String allowedOrigin;
-
-registry.addMapping("/api/**")
-        .allowedOrigins(allowedOrigin)
-        .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
-        .allowedHeaders("*")
-        .allowCredentials(false)
-        .maxAge(3600);
-```
-
-<br/>
-<br/>
 
 
 
