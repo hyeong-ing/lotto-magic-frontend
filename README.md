@@ -187,3 +187,4 @@ const result = LottoDrawResponseSchema.parse(JSON.parse(savedResult));
 + 이 저장소 폴더에서 `npm install` 후 `npm run dev`를 실행합니다.
 + 실제 백엔드와 연결할 때는 `.env.local`에 `NEXT_PUBLIC_API_BASE_URL=http://localhost:8080`을 설정하고 백엔드를 실행합니다.
 + 백엔드 없이 MSW로 확인하려면 `npx msw init public --save`를 한 번 실행하고, `.env.local`에 `NEXT_PUBLIC_API_MOCKING=enabled`를 설정한 뒤 개발 서버를 실행합니다.
+
