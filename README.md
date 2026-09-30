@@ -24,7 +24,7 @@
 ### 🔶 프로젝트 관련 링크
 
 + [Blog (프로젝트 기록)](https://post-this.tistory.com/category/%F0%9F%92%BB%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%F0%9F%8D%80%ED%96%89%EC%9A%B4%EC%9D%98%20%EB%A1%9C%EB%98%90%20%EB%A7%88%EB%B2%95%EC%A7%84%F0%9F%9B%B8)
-+ Youtube (동작화면)
++ YouTube (동작화면)
 + [Figma (다이어그램)](https://www.figma.com/board/l2IJSK7tnbOUJtfsGLfCHB/Lotto-Magic-Circle?node-id=0-1&t=GXmAo1ozuWh2cIsq-1)
 
 
@@ -32,6 +32,7 @@
 <br/>
 
 ### 🔶 프로젝트 설명
+처음 읽는 분도 이해할 수 있도록 주요 기능과 구현 과정을 중심으로 정리했습니다. <br/>
 
 <br/>
 
@@ -46,6 +47,7 @@
 + 요소 점수와 날짜, 무작위 값을 조합해 행운 점수를 계산합니다.
 + 점수 구간에 따른 행운의 메시지와 무작위 마법진 이미지를 제공합니다.
 + 별도의 데이터베이스 없이 요청마다 새로운 결과를 생성합니다.
++ 선택 요소와 행운 점수는 재미를 위한 장치이며, 실제 로또 당첨 확률을 높이는 기능은 아닙니다.
 
 <br/>
 <br/>
@@ -63,7 +65,7 @@
 
 
 ### 🔶 프로젝트 목표
-+ Next.js의 App Router의 파일 기반 라우팅과 프로젝트 구조 이해하기
++ Next.js App Router의 파일 기반 라우팅과 프로젝트 구조 이해하기
 + MSW로 백엔드 API를 모킹하여 프론트엔드 기능을 독립적으로 개발하고 검증하기
 + React Query, Zod, Framer Motion 등 다양한 라이브러리의 역할과 사용 방법 익히기
 + 모바일 화면을 고려한 반응형 UI를 구현하며 화면 크기에 따른 요소 배치와 크기 조정 경험하기
@@ -139,7 +141,7 @@ const result = LottoDrawResponseSchema.parse(JSON.parse(savedResult));
 
 1) 문제 발생 <br/>
 
-+ 초기 레이아웃이 데스크톱 화면에 최적화되어 있어, 모바일 기기에서는 UI 요소가 서로 겹치거나 정렬이 어긋나는 현상이 있었습니다
++ 초기 레이아웃이 데스크톱 화면에 최적화되어 있어, 모바일 기기에서는 UI 요소가 서로 겹치거나 정렬이 어긋나는 현상이 있었습니다.
 + 특히 절대 위치로 배치된 로또 공은 화면 너비가 줄어들어도 기존 좌표를 유지해 별도의 조정이 필요했습니다.
 
 <br/>
@@ -180,14 +182,8 @@ const result = LottoDrawResponseSchema.parse(JSON.parse(savedResult));
 <br/>
 <br/>
 
+### 🔶 실행 방법
 
-
-
-
-
-
-
-
-
-
-
++ 이 저장소 폴더에서 `npm install` 후 `npm run dev`를 실행합니다.
++ 실제 백엔드와 연결할 때는 `.env.local`에 `NEXT_PUBLIC_API_BASE_URL=http://localhost:8080`을 설정하고 백엔드를 실행합니다.
++ 백엔드 없이 MSW로 확인하려면 `npx msw init public --save`를 한 번 실행하고, `.env.local`에 `NEXT_PUBLIC_API_MOCKING=enabled`를 설정한 뒤 개발 서버를 실행합니다.
